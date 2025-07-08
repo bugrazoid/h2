@@ -37,7 +37,7 @@ pub struct FramedRead<T> {
 
 /// Partially loaded headers frame
 #[derive(Debug)]
-struct Partial {
+pub struct Partial {
     /// Empty frame
     frame: Continuable,
 
@@ -119,7 +119,7 @@ fn calc_max_continuation_frames(header_max: usize, frame_max: usize) -> usize {
 /// Decodes a frame.
 ///
 /// This method is intentionally de-generified and outlined because it is very large.
-fn decode_frame(
+pub fn decode_frame(
     hpack: &mut hpack::Decoder,
     max_header_list_size: usize,
     max_continuation_frames: usize,

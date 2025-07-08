@@ -3,6 +3,7 @@ mod framed_read;
 mod framed_write;
 
 pub use self::error::{SendError, UserError};
+pub use self::framed_read::decode_frame;
 
 use self::framed_read::FramedRead;
 use self::framed_write::FramedWrite;

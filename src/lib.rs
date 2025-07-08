@@ -110,6 +110,8 @@ mod codec;
 mod error;
 mod hpack;
 
+pub use self::codec::decode_frame;
+
 #[cfg(not(feature = "unstable"))]
 mod proto;
 
