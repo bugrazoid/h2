@@ -108,7 +108,9 @@ macro_rules! ready {
 #[cfg_attr(feature = "unstable", allow(missing_docs))]
 mod codec;
 mod error;
-mod hpack;
+
+#[allow(missing_docs)]
+pub mod hpack;
 
 pub use self::codec::decode_frame;
 
