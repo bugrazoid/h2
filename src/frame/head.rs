@@ -4,6 +4,7 @@ use bytes::BufMut;
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub struct Head {
+    len: usize,
     kind: Kind,
     flag: u8,
     stream_id: StreamId,
@@ -30,6 +31,7 @@ pub enum Kind {
 impl Head {
     pub fn new(kind: Kind, flag: u8, stream_id: StreamId) -> Head {
         Head {
+            len: 0,
             kind,
             flag,
             stream_id,
@@ -40,11 +42,21 @@ impl Head {
     pub fn parse(header: &[u8]) -> Head {
         let (stream_id, _) = StreamId::parse(&header[5..]);
 
+        let mut size = [0; 4];
+        (&mut size[1..4]).copy_from_slice(&header[0..3]);
+        let payload_len = u32::from_be_bytes(size) as usize;
+        dbg!(payload_len);
+
         Head {
+            len: payload_len,
             kind: Kind::new(header[3]),
             flag: header[4],
             stream_id,
         }
+    }
+
+    pub fn len(&self) -> usize {
+        self.len
     }
 
     pub fn stream_id(&self) -> StreamId {
