@@ -106,7 +106,7 @@ macro_rules! ready {
 }
 
 #[cfg_attr(feature = "unstable", allow(missing_docs))]
-mod codec;
+pub mod codec;
 mod error;
 
 #[allow(missing_docs)]

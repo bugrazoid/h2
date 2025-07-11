@@ -1,5 +1,5 @@
 mod error;
-mod framed_read;
+pub mod framed_read;
 mod framed_write;
 
 pub use self::error::{SendError, UserError};
