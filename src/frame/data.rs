@@ -147,7 +147,7 @@ impl<T: Buf> Data<T> {
     /// # Panics
     ///
     /// Panics if `dst` cannot contain the data frame.
-    pub(crate) fn encode_chunk<U: BufMut>(&mut self, dst: &mut U) {
+    pub fn encode_chunk<U: BufMut>(&mut self, dst: &mut U) {
         let len = self.data.remaining();
 
         assert!(dst.remaining_mut() >= len);

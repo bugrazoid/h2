@@ -45,7 +45,6 @@ impl Head {
         let mut size = [0; 4];
         (&mut size[1..4]).copy_from_slice(&header[0..3]);
         let payload_len = u32::from_be_bytes(size) as usize;
-        dbg!(payload_len);
 
         Head {
             len: payload_len,
